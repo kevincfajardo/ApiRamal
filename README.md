@@ -15,6 +15,9 @@ Formato de respostas em JSON
 ```
 Requer autenticação - API Key - permitidos("admin","user", "teste1")
 ```
+```
+Docs no Sewagger - [API Key - permitidos("admin","user", "teste1")](http://localhost:3304/api-docs/#/)
+```
 
 ### PARAMENTROS
 #### Categoria
