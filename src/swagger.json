@@ -1,0 +1,330 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Ramais",
+        "description": "Essa api é um teste, tem como função a manipulação de ramais",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3304",
+            "description": "API de teste"
+        }
+    ],
+    "paths": {
+        "/create_categorias": {
+            "post": {
+                "description": "Essa rota cadastra uma categoria",
+                "tags": [ "Categoria" ],
+                "security": [{ "ApiKeyAuth": [] }],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Categoria"
+                            },
+                            "examples": {
+                                "categoria": {
+                                    "value": {
+                                        "id": 1,
+                                        "nome": "admin",
+                                        "permissao": "CREATE/GET/PATCH/DELETE",
+                                        "perm_habilitada": true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "401": {
+                        "description": "Usuario não autorizado"
+                    },
+                    "201": {
+                        "description": "Sucesso :3"
+                    },
+                    "400": {
+                        "description": "Valores invalidos :("
+                    }
+                }
+            }
+        },
+        "/create_ramais": {
+            "post": {
+                "description": "Essa rota cadastra uma ramal",
+                "tags": [ "Ramal" ],
+                "security": [{ "ApiKeyAuth": [] }],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Ramal"
+                            },
+                            "examples": {
+                                "Ramal": {
+                                    "value": {
+                                        "telefone": "(11)11111-1111",
+                                        "nome": "jorge",
+                                        "id_categoria": 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "401": {
+                        "description": "Usuario não autorizado"
+                    },
+                    "201": {
+                        "description": "Sucesso :3"
+                    },
+                    "500": {
+                        "description": "Ocorreu um erro :("
+                    }
+                }
+            }
+        },
+        "/get_categorias/{id}": {
+            "get": {
+                "description": "Pega um valor filtrado pelo id de uma categoria",
+                "tags": [ "Categoria" ],
+                "security": [{ "ApiKeyAuth": [] }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "filtra o nome da categoria pelo ID",
+                        "require": true
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "Usuario não autorizado"
+                    },
+                    "200": {
+                        "description": "Sucesso :3"
+                    },
+                    "400": {
+                        "description": "Valores invalidos :("
+                    }
+                }
+            }
+        },
+        "/get_ramais/{id}": {
+            "get": {
+                "description": "Pega um valor filtrado pelo id de uma ramal",
+                "tags": [ "Ramal" ],
+                "security": [{ "ApiKeyAuth": [] }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "filtra o nome do ramal pelo ID",
+                        "require": true
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "Usuario não autorizado"
+                    },
+                    "200": {
+                        "description": "Sucesso :3"
+                    },
+                    "400": {
+                        "description": "Valores invalidos :("
+                    }
+                }
+            }
+        },
+        "/update_categorias/{id}": {
+            "patch": {
+                "description": "Atualiza uma categoria filtrado pelo id",
+                "tags": [ "Categoria" ],
+                "security": [{ "ApiKeyAuth": [] }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "filtra o nome da categoria pelo ID",
+                        "require": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Categoria"
+                            },
+                            "examples": {
+                                "Ramal": {
+                                    "value": {
+                                        "telefone": "(11)11111-1111",
+                                        "nome": "Elaina",
+                                        "id_categoria": 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "401": {
+                        "description": "Usuario não autorizado"
+                    },
+                    "200": {
+                        "description": "Sucesso :3"
+                    },
+                    "422":{
+                        "description": "Nenhum resultado encontrado"
+                    },
+                    "400": {
+                        "description": "Valor invalido:("
+                    }
+                }
+            }
+        },
+        "/update_ramais/{id}": {
+            "patch": {
+                "description": "Atualiza um ramal filtrado pelo id",
+                "tags": [ "Ramal" ],
+                "security": [{ "ApiKeyAuth": [] }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "filtra o nome do ramal pelo ID",
+                        "require": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Ramal"
+                            },
+                            "examples": {
+                                "Ramal": {
+                                    "value": {
+                                        "nome": "user"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "401": {
+                        "description": "Usuario não autorizado"
+                    },
+                    "200": {
+                        "description": "Sucesso :3"
+                    },
+                    "422":{
+                        "description": "Nenhum resultado encontrado"
+                    },
+                    "400": {
+                        "description": "Valor invalido:("
+                    }
+                }
+            }
+        },
+        "/delete_categorias/{id}": {
+            "delete": {
+                "description": "Deleta uma categoria filtrado pelo id",
+                "tags": [ "Categoria" ],
+                "security": [{ "ApiKeyAuth": [] }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "filtra o nome da categoria pelo ID",
+                        "require": true
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "Usuario não autorizado"
+                    },
+                    "200": {
+                        "description": "Sucesso :3"
+                    },
+                    "400": {
+                        "description": "Valor invalido:("
+                    }
+                }
+            }
+        },
+        "/delete_ramais/{id}": {
+            "delete": {
+                "description": "Deleta um ramal filtrado pelo id",
+                "tags": [ "Ramal" ],
+                "security": [{ "ApiKeyAuth": [] }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "filtra o nome do ramal pelo ID",
+                        "require": true
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "Usuario não autorizado"
+                    },
+                    "200": {
+                        "description": "Sucesso :3"
+                    },
+                    "400": {
+                        "description": "Valor invalido:("
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Categoria": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "number"
+                    },
+                    "nome": {
+                        "type": "string"
+                    },
+                    "permissao": {
+                        "type": "string"
+                    },
+                    "perm_habilitada": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "Ramal": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "number"
+                    },
+                    "telefone": {
+                        "type": "string"
+                    },
+                    "nome": {
+                        "type": "string"
+                    },
+                    "id_categoria": {
+                        "type": "number"
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "ApiKeyAuth": {
+                "type": "apiKey",
+                "in": "header",
+                "name": "auth"
+            }
+        }
+    }
+}
